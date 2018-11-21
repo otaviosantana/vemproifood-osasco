@@ -1,5 +1,6 @@
 package br.com.ifood.vemproifood.dishlist.service;
 
+import br.com.ifood.vemproifood.dishlist.model.CategoryDTO;
 import br.com.ifood.vemproifood.dishlist.model.Dish;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,19 +12,20 @@ import org.springframework.stereotype.Service;
 public class DishListService {
 
 	private final OpenWeatherService weatherRetriever;
+	private final RecomendationService recomendationService;
 
 	@Autowired
 	public DishListService(
-			OpenWeatherService openWeatherService) {
+			final OpenWeatherService openWeatherService,
+			final RecomendationService recomendationService) {
 		this.weatherRetriever = openWeatherService;
+		this.recomendationService = recomendationService;
 	}
 
 	public List<Dish> getDishListByCoordinates(Double lat, Double lon){
 		Double temperature = this.weatherRetriever.retrieveCurrentTemperatureByCoordinates(lat, lon);
-
-		/*
-		 * ... to be continued
-		 */
+		//TO BE IMPLEMENTED
+		CategoryDTO recommendType = recomendationService.getRecommendType("MAPS");
 
 		return new LinkedList<>();
 	}
