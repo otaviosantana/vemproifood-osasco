@@ -11,19 +11,19 @@ import org.springframework.stereotype.Service;
 public class DishListService {
 
 	private final OpenWeatherService weatherRetriever;
+	private final GoogleMapsRetrieverService mapsService;
 
 	@Autowired
 	public DishListService(
-			OpenWeatherService openWeatherService) {
+			OpenWeatherService openWeatherService, GoogleMapsRetrieverService mapsService) {
 		this.weatherRetriever = openWeatherService;
+		this.mapsService = mapsService;
 	}
 
 	public List<Dish> getDishListByCoordinates(Double lat, Double lon){
 		Double temperature = this.weatherRetriever.retrieveCurrentTemperatureByCoordinates(lat, lon);
 
-		/*
-		 * ... to be continued
-		 */
+		String city = this.mapsService.retrieveCityByCoordinates(lat, lon);
 
 		return new LinkedList<>();
 	}
