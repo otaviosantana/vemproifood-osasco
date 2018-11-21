@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+# ===================================================================
+  dish-list-service:
+    container_name: dish-list-service
+    hostname: dish-list-service
+    image: dish-list-service:local
+
+    build:
+      context: .
+      dockerfile: .docker/build-local.dockerfile
+    volumes:
+      - .:/tmp
+    ports:
+      - "8080:8080"
+    working_dir: /tmp
+    networks:
+      - app-private-network
+
+    entrypoint: java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+# ===================================================================
+networks:
+  app-private-network:
+    driver: bridge
+
