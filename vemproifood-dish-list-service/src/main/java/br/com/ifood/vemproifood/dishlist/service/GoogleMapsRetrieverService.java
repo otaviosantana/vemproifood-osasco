@@ -10,7 +10,6 @@ import org.springframework.web.client.RestTemplate;
 import com.google.common.collect.ImmutableMap;
 
 import br.com.ifood.vemproifood.dishlist.model.GoogleMapsResponse;
-import br.com.ifood.vemproifood.dishlist.model.GoogleMapsResponse.AddressComponents;
 
 @Service
 public class GoogleMapsRetrieverService {
@@ -32,7 +31,8 @@ public class GoogleMapsRetrieverService {
 	                "longitude", longitude,
 	                "apiKey", apiKey));
 
-		AddressComponents result = googleMapsDataResponse.getBody().getResults().get(0);
-		return result.getAdressComponents().stream().filter(ad -> ad.getTypes().contains("administrative_area_level_2")).findFirst().get().getLong_name();
+		GoogleMapsResponse body = googleMapsDataResponse.getBody();
+		return body.getResults().get(0).getAddress_components().stream().filter(ad -> ad.getTypes().contains("administrative_area_level_2")).findFirst().get().getShort_name();
+
 	}
 }

@@ -4,55 +4,13 @@ import java.util.List;
 
 public class GoogleMapsResponse {
 
-	private List<AddressComponents> results;
+	private List<AddressData> results;
 
-	public List<AddressComponents> getResults() {
+	public List<AddressData> getResults() {
 		return results;
 	}
 
-	public void setResults(List<AddressComponents> results) {
+	public void setResults(List<AddressData> results) {
 		this.results = results;
-	}
-
-	public class AddressComponents {
-		private List<AddressComponent> adressComponents;
-
-		public List<AddressComponent> getAdressComponents() {
-			return adressComponents;
-		}
-
-		public void setAdressComponents(List<AddressComponent> adressComponents) {
-			this.adressComponents = adressComponents;
-		}
-	}
-
-	public class AddressComponent {
-		private String long_name;
-		private String short_name;
-		private List<String> types;
-
-		public String getLong_name() {
-			return long_name;
-		}
-
-		public void setLong_name(String long_name) {
-			this.long_name = long_name;
-		}
-
-		public String getShort_name() {
-			return short_name;
-		}
-
-		public void setShort_name(String short_name) {
-			this.short_name = short_name;
-		}
-
-		public List<String> getTypes() {
-			return types;
-		}
-
-		public void setTypes(List<String> types) {
-			this.types = types;
-		}
 	}
 }
